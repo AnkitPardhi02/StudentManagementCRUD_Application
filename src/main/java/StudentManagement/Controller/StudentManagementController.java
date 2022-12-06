@@ -21,11 +21,24 @@ public class StudentManagementController {
     void insertListStudent(@RequestBody List<StudentModel> studentModel){
         studentManagementService.insertListStudent(studentModel);
     }
+    @RequestMapping("/FetchOneData")
+    @ResponseBody
+    StudentModel  fetchOneStudent(){
+        return studentManagementService.fetchOneStudent();
+
+    }
     @RequestMapping("/FetchListOfData")
     @ResponseBody
     List<StudentModel> fetchListStudent(){
         return studentManagementService.fetchListStudent();
     }
+    @RequestMapping("/UpdateOneData")
+    @ResponseBody
+    StudentModel updateOneStudent(@RequestBody StudentModel studentModel){
+        return studentManagementService.updateOneStudent(studentModel);
+    }
+
+
 
 
 

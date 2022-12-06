@@ -12,6 +12,9 @@ public class StudentManagementRepo implements StudentManagementRepoImpl{
     String url = "jdbc:mysql://localhost:3306/all";
     String username = "root";
     String password ="";
+
+
+
     @Override
     public void insertOneStudent(StudentModel studentModel) {
         String query="insert into data values ('"+studentModel.getId()+"'," +
@@ -46,6 +49,30 @@ public class StudentManagementRepo implements StudentManagementRepoImpl{
         }
     }
     @Override
+    public StudentModel fetchOneStudent() {
+        int id=9325;
+        String query="select * from data where id='"+id+"'";
+        StudentModel sm=new StudentModel();
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url,username,password);
+            Statement st=connection.createStatement();
+            ResultSet rs=st.executeQuery(query);
+//            StudentModel sm=new StudentModel();
+            while (rs.next()){
+                sm.setId(rs.getInt(1));
+                sm.setName(rs.getString(2));
+                sm.setEmail(rs.getString(3));
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return sm;
+
+    }
+    @Override
     public List<StudentModel> fetchListStudent() {
         String query="select * from data";
         List<StudentModel> studentModel =new ArrayList<>();
@@ -66,4 +93,51 @@ public class StudentManagementRepo implements StudentManagementRepoImpl{
         }
 return studentModel;
     }
+
+    @Override
+    public StudentModel updateOneStudent(StudentModel studentModel) {
+        int id=9325;
+       String query="update data set name='"+studentModel.getName()+"'" +
+                ",email='"+studentModel.getEmail()+"' where id='"+id+"' ";
+        String query1="select * from data where id ='"+id+"' ";
+        StudentModel studentModel1=new StudentModel();
+       try{
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           Connection connection = DriverManager.getConnection(url,username,password);
+           Statement st=connection.createStatement();
+           st.executeUpdate(query);
+           ResultSet rs=st.executeQuery(query1);
+           while (rs.next()){
+               studentModel1.setId(rs.getInt(1));
+               studentModel1.setName(rs.getString(2));
+               studentModel1.setEmail(rs.getString(3));
+           }
+
+       }catch (Exception exception){
+           System.out.println(exception);
+       }
+       return studentModel1;
+    }
 }
+//    @Override
+//    public Student selectStudent(String name) {
+////        String url = "jdbc:mysql://localhost:3306/stud";
+////        String username = "root";
+////        String password = "";
+//        String query = "select * from student where name = '"+name+"'";
+//        Student student = new Student();
+//        try{
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Connection connection = DriverManager.getConnection(url,username,password);
+//            Statement st = connection.createStatement();
+//            ResultSet rs = st.executeQuery(query);
+//            while (rs.next()){
+//                student.setId(rs.getInt(1));
+//                student.setName(rs.getString(2));
+//                student.setEmail(rs.getString(3));
+//            }
+//        }catch (Exception e){
+//            System.out.println(e);
+//        }
+//        return student;
+//    }

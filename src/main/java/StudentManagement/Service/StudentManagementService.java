@@ -25,6 +25,16 @@ public class StudentManagementService implements StudentManagementServiceImpl{
     }
 
     @Override
+    public StudentModel fetchOneStudent() {
+        return studentManagementRepo.fetchOneStudent();
+    }
+
+    @Override
+    public StudentModel updateOneStudent(StudentModel studentModel) {
+       return studentManagementRepo.updateOneStudent(studentModel);
+    }
+
+    @Override
     public List<StudentModel> fetchListStudent() {
       return studentManagementRepo.fetchListStudent();
     }
