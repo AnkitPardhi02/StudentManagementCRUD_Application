@@ -28,6 +28,10 @@ public class StudentManagementService implements StudentManagementServiceImpl{
     public StudentModel fetchOneStudent() {
         return studentManagementRepo.fetchOneStudent();
     }
+    @Override
+    public List<StudentModel> fetchListStudent() {
+        return studentManagementRepo.fetchListStudent();
+    }
 
     @Override
     public StudentModel updateOneStudent(StudentModel studentModel) {
@@ -35,7 +39,12 @@ public class StudentManagementService implements StudentManagementServiceImpl{
     }
 
     @Override
-    public List<StudentModel> fetchListStudent() {
-      return studentManagementRepo.fetchListStudent();
+    public boolean deleteOneStudent(int id) {
+       return studentManagementRepo.deleteOneStudent(id);
+    }
+
+    @Override
+    public void deleteAllStudent() {
+        studentManagementRepo.deleteAllStudent();
     }
 }

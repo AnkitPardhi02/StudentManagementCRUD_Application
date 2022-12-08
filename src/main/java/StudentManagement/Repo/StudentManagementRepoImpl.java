@@ -11,4 +11,6 @@ public interface StudentManagementRepoImpl {
     List<StudentModel> fetchListStudent();
     StudentModel fetchOneStudent();
     StudentModel updateOneStudent( StudentModel studentModel);
+    boolean deleteOneStudent(int id);
+    void deleteAllStudent();
 }
