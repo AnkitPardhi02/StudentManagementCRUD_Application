@@ -84,8 +84,9 @@ public class StudentManagementRepo implements StudentManagementRepoImpl{
             Connection connection = DriverManager.getConnection(url,username,password);
             Statement st=connection.createStatement();
             ResultSet rs=st.executeQuery(query);
-            StudentModel sm=new StudentModel();
+
             while (rs.next()){
+                StudentModel sm=new StudentModel();
                 sm.setId(rs.getInt(1));
                 sm.setName(rs.getString(2));
                 sm.setEmail(rs.getString(3));
